@@ -53,11 +53,12 @@ module.exports = function toReadable(number) {
             number = Math.trunc(number / 10) * 10;
             for (i = 0; i < Object.keys(numb_obj).length; i++) {
                 if (Object.keys(numb_obj)[i] == number) {
-                    str += numb_obj[number] + " ";
+                    str += numb_obj[number];
                 }
             }
             if (numb2dig == 0) break;
             number = numb2dig;
+            str += " ";
         } else {
             for (i = 0; i < Object.keys(numb_obj).length; i++) {
                 if (Object.keys(numb_obj)[i] == number) {
@@ -68,4 +69,4 @@ module.exports = function toReadable(number) {
         }
     }
     return str;
-}
+};

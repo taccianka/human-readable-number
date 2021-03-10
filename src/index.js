@@ -42,11 +42,12 @@ module.exports = function toReadable(number) {
             number = Math.trunc(number / 100);
             for (i = 0; i < Object.keys(numb_obj).length; i++) {
                 if (Object.keys(numb_obj)[i] == number) {
-                    str += numb_obj[number] + " ";
+                    str += numb_obj[number];
                 }
             }
             str += "hundred ";
             if (numb3dig == 0) break;
+            str += " ";
             number = numb3dig;
         } else if (number > 20 && number <= 99) {
             numb2dig = number % 10;

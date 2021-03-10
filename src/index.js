@@ -45,7 +45,7 @@ module.exports = function toReadable(number) {
                     str += numb_obj[number];
                 }
             }
-            str += "hundred ";
+            str += " hundred";
             if (numb3dig == 0) break;
             str += " ";
             number = numb3dig;

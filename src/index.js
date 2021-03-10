@@ -1,4 +1,4 @@
-/*module.exports =*/ function toReadable(number) {
+module.exports = function toReadable(number) {
     let str = "";
     let i = 0;
 

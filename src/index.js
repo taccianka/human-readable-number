@@ -1,7 +1,6 @@
 /*module.exports =*/ function toReadable(number) {
     let str = "";
-    //let i = 0;
-    let number1, number2;
+    let i = 0;
 
     let numb_obj = {
         0: "zero",
@@ -34,44 +33,39 @@
         90: "ninety",
     };
 
-    /*   function search(find_numb) {
-        let str_find;
-        let i = 0;
-        for (i = 0; i < Object.keys(numb_obj).length; i++) {
-            if (find_numb <= 20 && find_numb >= 0) {
-                if (Object.keys(numb_obj)[i] === find_numb) {
-                    str_find += numb_obj[find_numb];
+    let numb2dig;
+    let numb3dig;
+
+    while (1) {
+        if (number >= 100) {
+            numb3dig = number % 100;
+            number = Math.trunc(number / 100);
+            for (i = 0; i < Object.keys(numb_obj).length; i++) {
+                if (Object.keys(numb_obj)[i] == number) {
+                    str += numb_obj[number] + " ";
                 }
             }
-        }
-        console.log(str_find);
-        return str_find;
-    }
-
-    for (i = 0; i < 3; i++) {
-        if (number >= 100) {
-            number1 = Math.trunc(number / 100);
-            str += search(number1);
-            number = number - number1 * 100;
-            str += " hundred ";
-        }
-        if (number > 20 && number < 100) {
-            number2 = (number - (number % 10)) * 10;
-            str = str + search(number2) + " ";
-            number = number - number2 * 10;
-        }
-        if (number <= 20 && number >= 0) {
-            str += search(number);
-        }
-    }*/
-    for (i = 0; i < Object.keys(numb_obj).length; i++) {
-        if (number <= 20 && number >= 0) {
-            if (Object.keys(numb_obj)[i] == number) {
-                str += numb_obj[number];
+            str += "hundred ";
+            if (numb3dig == 0) break;
+            number = numb3dig;
+        } else if (number > 20 && number <= 99) {
+            numb2dig = number % 10;
+            number = Math.trunc(number / 10) * 10;
+            for (i = 0; i < Object.keys(numb_obj).length; i++) {
+                if (Object.keys(numb_obj)[i] == number) {
+                    str += numb_obj[number] + " ";
+                }
             }
+            if (numb2dig == 0) break;
+            number = numb2dig;
+        } else {
+            for (i = 0; i < Object.keys(numb_obj).length; i++) {
+                if (Object.keys(numb_obj)[i] == number) {
+                    str += numb_obj[number];
+                }
+            }
+            break;
         }
     }
-
-    console.log(str);
     return str;
 }

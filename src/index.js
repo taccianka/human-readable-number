@@ -1,6 +1,5 @@
 module.exports = function toReadable(number) {
     let str = "";
-    let i = 0;
 
     let numb_obj = {
         0: "zero",
@@ -33,40 +32,15 @@ module.exports = function toReadable(number) {
         90: "ninety",
     };
 
-    let numb2dig;
-    let numb3dig;
-
-    while (1) {
-        if (number >= 100) {
-            numb3dig = number % 100;
-            number = Math.trunc(number / 100);
-            for (i = 0; i < Object.keys(numb_obj).length; i++) {
-                if (Object.keys(numb_obj)[i] == number) {
-                    str += numb_obj[number];
-                }
-            }
-            str += " hundred";
-            if (numb3dig == 0) break;
-            str += " ";
-            number = numb3dig;
-        } else if (number > 20 && number <= 99) {
-            numb2dig = number % 10;
-            number = Math.trunc(number / 10) * 10;
-            for (i = 0; i < Object.keys(numb_obj).length; i++) {
-                if (Object.keys(numb_obj)[i] == number) {
-                    str += numb_obj[number];
-                }
-            }
-            if (numb2dig == 0) break;
-            number = numb2dig;
-            str += " ";
-        } else {
-            for (i = 0; i < Object.keys(numb_obj).length; i++) {
-                if (Object.keys(numb_obj)[i] == number) {
-                    str += numb_obj[number];
-                }
-            }
-            break;
+    if (number <= 20 || (number < 100 && !(number % 10))) {
+        str += numb_obj[number];
+    } else if (number > 20 && number <= 99) {
+        str += toReadable(Math.trunc(number / 10) * 10) + ' ';
+        str += toReadable(number % 10);
+    } else if (number >= 100) {
+        str += toReadable(Math.trunc(number / 100)) + ' hundred';
+        if (number%100) {
+            str += ' ' + toReadable(number % 100);
         }
     }
     return str;
